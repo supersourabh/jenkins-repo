@@ -2,11 +2,15 @@ pipeline{
   agent any
   stages{
     stage('Source Checkout'){
-      //checkout github code
-      git 'https://github.com/supersourabh/HallsProject.git'
+      steps{
+        //checkout github code
+        git 'https://github.com/supersourabh/HallsProject.git'
+      }
     }
     stage('starting server'){
-      bat 'npm install && start'
+      steps{
+        bat 'npm install && start'
+      }
     }
   }
 }
