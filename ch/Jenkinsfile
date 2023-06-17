@@ -14,8 +14,8 @@ pipeline {
             steps {
                 script{
                     echo'building on branch feature-dev'
+                    docker build -t  ${env.BUILD_TAG} .
                 }
-                docker 'build -t  ${env.BUILD_TAG} .'
             }
         }
     }
