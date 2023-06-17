@@ -1,5 +1,9 @@
 pipeline{
   agent any
+  environment{
+    branchName=env.BRANCH_NAME
+    randomValue = UUID.randomUUID().toString()
+  }
   stages{
     stage('Source Checkout'){
       steps{
@@ -9,7 +13,8 @@ pipeline{
     }
     stage('starting server'){
       steps{
-        bat 'npm install && start'
+        echo'building on branch ${branchName}'
+        docker build -t $branchName-randomValue .
       }
     }
   }
