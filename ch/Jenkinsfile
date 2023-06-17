@@ -14,9 +14,9 @@ pipeline {
             steps {
                 script{
                     def randomValue = UUID.randomUUID().toString()
-                    echo'building on branch ${env.branchName}'
+                    echo'building on branch ${env.BUILD_TAG}'
                 }
-                docker 'build -t $branchName-randomValue .'
+                docker 'build -t  ${env.BUILD_TAG} .'
             }
         }
     }
