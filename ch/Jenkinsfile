@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script{
                     echo'building on branch feature-dev'
-                    docker.build('sourabhkotagi/siteproject:latest', '.')
+                    bat 'docker build -t sourabhkotagi/siteproject:latest . '
                 }
             }
         }
