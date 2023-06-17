@@ -13,8 +13,7 @@ pipeline {
         stage('starting server') {
             steps {
                 script{
-                    def randomValue = UUID.randomUUID().toString()
-                    echo'building on branch ${env.BUILD_TAG}'
+                    echo'building on branch feature-dev'
                 }
                 docker 'build -t  ${env.BUILD_TAG} .'
             }
