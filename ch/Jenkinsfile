@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment{
-        branchName=env.BRANCH_NAME
-        randomValue = UUID.randomUUID().toString()
+        branchName= '${GIT_BRANCH}'
     }
     stages{
         stage('Source Checkout') {
@@ -13,7 +12,10 @@ pipeline {
         }
         stage('starting server') {
             steps {
-                echo'building on branch ${branchName}'
+                script{
+                    def randomValue = UUID.randomUUID().toString()
+                    echo'building on branch ${branchName}'
+                }
                 docker 'build -t $branchName-randomValue .'
             }
         }
