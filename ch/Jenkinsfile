@@ -1,21 +1,21 @@
-pipeline{
-  agent any
-  environment{
-    branchName=env.BRANCH_NAME
-    randomValue = UUID.randomUUID().toString()
-  }
-  stages{
-    stage('Source Checkout'){
-      steps{
-        //checkout github code
-        git 'https://github.com/supersourabh/HallsProject.git'
-      }
+pipeline {
+    agent any
+    environment{
+        branchName=env.BRANCH_NAME
+        randomValue = UUID.randomUUID().toString()
     }
-    stage('starting server'){
-      steps{
-        echo'building on branch ${branchName}'
-        docker build -t $branchName-randomValue .
-      }
+    stages{
+        stage('Source Checkout') {
+            steps {
+                //checkout github code
+                git 'https://github.com/supersourabh/HallsProject.git'
+            }
+        }
+        stage('starting server') {
+            steps {
+                echo'building on branch ${branchName}'
+                docker 'build -t $branchName-randomValue .'
+            }
+        }
     }
-  }
 }
