@@ -10,11 +10,18 @@ pipeline {
                 git branch: 'feature-dev', url:'https://github.com/supersourabh/HallsProject.git'
             }
         }
-        stage('starting server') {
+        stage('Docker build') {
             steps {
                 script{
                     echo'building on branch feature-dev'
                     bat 'docker build -t sourabhkotagi/siteproject:latest . '
+                }
+            }
+        }
+        stage('Docker run'){
+            steps{
+                script{
+                    bat 'docker run -p 5000:5000 sourabhkotagi/siteproject:latest '
                 }
             }
         }
